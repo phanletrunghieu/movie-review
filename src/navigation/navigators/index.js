@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
-import AuthLoadingScreen from './src/screens/AuthLoadingScreen'
-import HomeScreen from './src/screens/HomeScreen'
-import OtherScreen from './src/screens/OtherScreen'
-import SignInScreen from './src/screens/SignInScreen'
+import AuthLoadingScreen from '../../screens/AuthLoadingScreen'
+import HomeScreen from '../../screens/HomeScreen'
+import OtherScreen from '../../screens/OtherScreen'
+import SignInScreen from '../../screens/SignInScreen'
 
 const AppStack = createStackNavigator(
   {
