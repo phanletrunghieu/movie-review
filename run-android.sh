@@ -1,0 +1,1 @@
+$ANDROID_HOME/emulator/emulator @Nexus_4_API_24
