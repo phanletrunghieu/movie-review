@@ -38,6 +38,7 @@ export default class AuthLoadingScreen extends Component {
         }, self.minTimeWait - timePass);
       }
     })
+    .catch(()=>self.props.navigation.navigate('Auth'))
   };
 
   render() {

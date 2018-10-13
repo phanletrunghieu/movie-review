@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StatusBar, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import Trailer from "../components/Trailer"
 
 export default class OtherScreen extends Component {
 
@@ -40,7 +41,8 @@ export default class OtherScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar backgroundColor="transparent" translucent={true} />
-        <View style={styles.marginTop}></View>
+
+        <Trailer image="https://s3img.vcdn.vn/123phim/2018/10/dong-ho-15389642211592.jpg" videoId="q5u6v_W2ztA" />
         <View style={styles.bottomNav}>
           <TouchableOpacity onPress={this.onPressLike}>
             <Image
