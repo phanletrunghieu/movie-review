@@ -1,1 +1,1 @@
-$ANDROID_HOME/emulator/emulator @Nexus_4_API_24
+$ANDROID_HOME/emulator/emulator @$($ANDROID_HOME/emulator/emulator -list-avds | awk 'FNR == 1')
