@@ -11,6 +11,23 @@ export default class Trailer extends Component {
         play: false,
     }
 
+    constructor(props){
+        super(props)
+
+        this.onVideoStateChange = this.onVideoStateChange.bind(this);
+    }
+
+    onVideoStateChange(e){
+        if(e.state === "paused" || e.state === "stopped"){
+            this.props.onPause();
+            this.setState({play: false})
+        }
+        else if(e.state === "playing"){
+            this.props.onPlay();
+            this.setState({play: true})
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -31,13 +48,8 @@ export default class Trailer extends Component {
                     loop={false}
                     showinfo={false}
                     rel={false}
-                    onReady={e => this.setState({ isReady: true })}
-                    onChangeState={e => {
-                        if(e.state === "paused" || e.state === "stopped")
-                            this.setState({play: false})
-                        else if(e.state === "playing")
-                            this.setState({play: true})
-                    }}
+                    onReady={e => this.setState({ isVideoReady: true })}
+                    onChangeState={this.onVideoStateChange}
                     style={styles.video}
                 />
             </View>
@@ -48,8 +60,13 @@ export default class Trailer extends Component {
 Trailer.propTypes = {
     image: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
 };
-Trailer.defaultProps = {};
+Trailer.defaultProps = {
+    onPlay: ()=>{},
+    onPause: ()=>{},
+};
 
 var styles = StyleSheet.create({
     container: {
@@ -63,8 +80,8 @@ var styles = StyleSheet.create({
         position: "absolute",
         top: 0,
         left: 0,
-        zIndex: 99,
-        elevation: 99
+        zIndex: 1,
+        elevation: 1
     },
     image: {
         width: "100%",

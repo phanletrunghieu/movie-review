@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native'
+import { StyleSheet, TouchableWithoutFeedback, View, Dimensions, Image } from 'react-native'
 import PropTypes from 'prop-types';
 
 const {width, height} = Dimensions.get("window")
@@ -7,9 +7,11 @@ const {width, height} = Dimensions.get("window")
 export default class FilmBanner extends Component {
     render() {
         return (
-            <TouchableOpacity style={styles.button} onPress={this.props.onPress}>
-                <Image source={{uri: this.props.src}} style={styles.image} />
-            </TouchableOpacity>
+            <TouchableWithoutFeedback onPress={this.props.onPress}>
+                <View style={styles.button}>
+                    <Image source={{uri: this.props.src}} style={styles.image} />
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 }

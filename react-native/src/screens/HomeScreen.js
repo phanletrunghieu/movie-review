@@ -27,19 +27,19 @@ export default class HomeScreen extends Component {
           <Icon name='search' />
         </Button>
         <View style={styles.content}>
-          <ScrollView horizontal>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/johnny-english-15386227274357.jpg" onPress={this._showFilmDetail} />
             <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/ke-hoach-doi-chong-15390539760186.jpg" onPress={this._showFilmDetail} />
             <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/dong-ho-15389642211592.jpg" onPress={this._showFilmDetail} />
             <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/chu-oi-dung-lay-me-con-15389652900498.jpg" onPress={this._showFilmDetail} />
           </ScrollView>
-          <ScrollView horizontal>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/10/vi-sao-vut-sang-a-star-is-born-15385357451876_220x310.jpg" onPress={this._showFilmDetail} />
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/ngoi-nha-co-chiec-dong-ho-ma-thuat-15380440089530_370x490.jpg" onPress={this._showFilmDetail} />
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/chan-nho-ban-o-dau-smallfoot-15380440216868_370x490.jpg" onPress={this._showFilmDetail} />
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/a-x-l-chu-cho-robot-c13-15380437444994_370x490.png" onPress={this._showFilmDetail} />
           </ScrollView>
-          <ScrollView horizontal>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/a-x-l-chu-cho-robot-c13-15380437444994_370x490.png" onPress={this._showFilmDetail} />
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/chan-nho-ban-o-dau-smallfoot-15380440216868_370x490.jpg" onPress={this._showFilmDetail} />
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/09/ngoi-nha-co-chiec-dong-ho-ma-thuat-15380440089530_370x490.jpg" onPress={this._showFilmDetail} />
