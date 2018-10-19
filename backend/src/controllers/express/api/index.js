@@ -7,5 +7,6 @@ var apiRoutes = express.Router();
 // apiRoutes.use('/v1', require('./v1'));
 
 apiRoutes.use("/users", require('./user'))
+apiRoutes.use("/films", require('./film'))
 
 module.exports = apiRoutes;
