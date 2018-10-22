@@ -17,6 +17,15 @@ var FilmSchema = new mongoose.Schema({
     trailers: {
         type: [String]
     },
+    genre: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Genre',
+    },
+    is_top: {
+        type: Boolean,
+        default: false,
+    },
     date_created: {
         type: Date,
         default: Date.now
@@ -27,7 +36,7 @@ var FilmSchema = new mongoose.Schema({
     }
 });
 
-FilmSchema.pre('save', next=>{
+FilmSchema.pre('save', next => {
     if (this.isNew || this.isModified) {
         this.date_updated = Date.now();
     }
