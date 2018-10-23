@@ -59,11 +59,11 @@ function createMirgate(name){
 
 function up(){
     let x = db_mongo.connect()
-        .then(()=>{
+        .then(async ()=>{
             for(let i = current_version + 1; i < list_migrations.length; i++){
                 let m = require(`${data_path}/${list_migrations[i]}`)
                 if(m.up){
-                    m.up()
+                    await m.up()
                     fs.writeFileSync(version_path, i)
                 }
             }
@@ -79,10 +79,8 @@ function down(){
     let m = require(`${data_path}/${list_migrations[current_version]}`)
     if(m.down){
         db_mongo.connect()
-            .then(()=>{
-                m.down()
-                db_mongo.close()
-            })
+            .then(()=>m.down())
+            .then(()=>db_mongo.close())
             .catch(err=>console.error(err))
 
         // remove file
