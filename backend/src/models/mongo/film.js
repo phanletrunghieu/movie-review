@@ -14,6 +14,10 @@ var FilmSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    banner: {
+        type: String,
+        trim: true,
+    },
     trailers: {
         type: [String]
     },

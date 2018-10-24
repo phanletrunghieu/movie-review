@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView, StatusBar, AsyncStorage, StyleSheet } from 'react-native'
 import {Button, Icon} from 'native-base'
-import FilmThumbnail from '../components/FilmThumbnail'
-import FilmBanner from '../components/FilmBanner'
+import { connect } from "react-redux";
+import FilmThumbnail from '../../components/FilmThumbnail'
+import FilmBanner from '../../components/FilmBanner'
+import {fetchTopFilms} from './actions'
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Welcome to the app!',
   };
+
+    constructor(props){
+        super(props)
+
+        this.props.fetchTopFilms()
+    }
 
   _showFilmDetail = () => {
     this.props.navigation.navigate('FilmDetail');
@@ -27,11 +35,12 @@ export default class HomeScreen extends Component {
           <Icon name='search' />
         </Button>
         <View style={styles.content}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/johnny-english-15386227274357.jpg" onPress={this._showFilmDetail} />
-            <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/ke-hoach-doi-chong-15390539760186.jpg" onPress={this._showFilmDetail} />
-            <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/dong-ho-15389642211592.jpg" onPress={this._showFilmDetail} />
-            <FilmBanner src="https://s3img.vcdn.vn/123phim/2018/10/chu-oi-dung-lay-me-con-15389652900498.jpg" onPress={this._showFilmDetail} />
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {
+                    this.props.topFilms.map(film=>(
+                        <FilmBanner key={film._id} src={film.banner} onPress={this._showFilmDetail} />
+                    ))
+                }
           </ScrollView>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <FilmThumbnail src="https://s3img.vcdn.vn/mobile/123phim/2018/10/vi-sao-vut-sang-a-star-is-born-15385357451876_220x310.jpg" onPress={this._showFilmDetail} />
@@ -64,3 +73,13 @@ var styles = StyleSheet.create({
     paddingHorizontal: 5
   }
 })
+
+const mapStateToProps = (state) => ({
+    ...state.homeData,
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchTopFilms: ()=>dispatch(fetchTopFilms())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
