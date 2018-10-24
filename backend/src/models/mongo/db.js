@@ -16,4 +16,8 @@ const connect = ()=>{
 	});
 }
 
-module.exports = {connect};
+const close = ()=>{
+    return mongoose.connection.close()
+}
+
+module.exports = {connect, close};

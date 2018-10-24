@@ -1,21 +1,24 @@
 {
-  "name": "movie-review",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "ENV=local node src/index.js",
-    "local-db": "docker-compose up -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^3.0.1",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "helmet": "^3.14.0",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.4"
-  }
+    "name": "movie-review",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "ENV=local node src/index.js",
+        "local-db": "docker-compose up -d",
+        "migrate-up": "node src/migrator up",
+        "migrate-down": "node src/migrator down",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^3.0.1",
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "helmet": "^3.14.0",
+        "jsonwebtoken": "^8.3.0",
+        "mongoose": "^5.3.4"
+    },
+    "devDependencies": {}
 }
