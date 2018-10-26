@@ -5,6 +5,10 @@ var GenreSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    is_home: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 module.exports = mongoose.model('Genre', GenreSchema);

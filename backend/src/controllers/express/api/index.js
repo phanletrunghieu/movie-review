@@ -8,5 +8,6 @@ var apiRoutes = express.Router();
 
 apiRoutes.use("/users", require('./user'))
 apiRoutes.use("/films", require('./film'))
+apiRoutes.use("/genres", require('./genre'))
 
 module.exports = apiRoutes;

@@ -1,5 +1,5 @@
 import {getTopFilms} from '../../../api/FilmAPI.js'
-import {TOP_FILMS_IS_LOADING, FETCH_ERROR, FETCH_SUCCESSFULLY} from '../constants.js'
+import {TOP_FILMS_IS_LOADING, FETCH_TOP_FILMS_ERROR, FETCH_TOP_FILMS_SUCCESSFULLY} from '../constants.js'
 
 export function fetchTopFilms(){
     return (dispatch)=>{
@@ -21,14 +21,14 @@ export function topFilmsIsLoading(bool){
 
 export function topFilmsFetchSuccessfully(films){
     return {
-        type: FETCH_SUCCESSFULLY,
+        type: FETCH_TOP_FILMS_SUCCESSFULLY,
         data: films
     }
 }
 
 export function errorFetchTopFilms(err){
     return {
-        type: FETCH_ERROR,
+        type: FETCH_TOP_FILMS_ERROR,
         error: err
     }
 }
