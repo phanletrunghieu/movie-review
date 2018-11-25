@@ -3,16 +3,19 @@ const config = require('../../config')
 const Genre = require(config.models_dir + '/mongo/genre')
 
 exports.up = ()=>{
-	  return Genre.create([
-            {
-                _id: mongoose.Types.ObjectId("5bcf03c89036025ad45d5a7c"),
-                name: "Action",
-            },
-            {
-                _id: mongoose.Types.ObjectId("5bcf03c89036025ad45d5a7d"),
-                name: "Drama",
-            }
-        ])
+    return Genre.create([
+        {
+            _id: mongoose.Types.ObjectId("5bcf03c89036025ad45d5a7c"),
+            name: "Action",
+            is_home: true,
+        },
+        {
+            _id: mongoose.Types.ObjectId("5bcf03c89036025ad45d5a7d"),
+            name: "Drama",
+            is_home: true,
+        },
+        
+    ])
 }
 
 exports.down = ()=>{

@@ -1,5 +1,6 @@
 import { applyMiddleware, createStore, compose } from "redux";
 import { createLogger } from "redux-logger";
+import thunk from 'redux-thunk';
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 import rootReducer from "./reducers";
 
@@ -16,7 +17,7 @@ const middleware = createReactNavigationReduxMiddleware(
 
 const myStore = createStore(
   rootReducer,
-  compose(applyMiddleware(logger, middleware))
+    compose(applyMiddleware(logger, thunk, middleware))
 );
 
 export default myStore;

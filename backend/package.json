@@ -4,10 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ENV=local node src/index.js",
+        "start": "ENV=staging node src/index.js",
         "local-db": "docker-compose up -d",
-        "migrate-up": "node src/migrator up",
-        "migrate-down": "node src/migrator down",
+        "migrate-up": "ENV=staging node src/migrator up",
+        "migrate-down": "ENV=staging node src/migrator down",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
