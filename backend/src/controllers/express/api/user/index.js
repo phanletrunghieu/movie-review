@@ -13,5 +13,10 @@ userRoutes.get("/:user_id", require('./find'))
 userRoutes.delete("/:user_id", require('./delete'))
 userRoutes.put("/:user_id", require('./update'))
 
+const like_film = require('./like_film')
+userRoutes.get("/:user_id/like_film", like_film.get)
+userRoutes.post("/:user_id/like_film", like_film.like)
+userRoutes.delete("/:user_id/like_film", like_film.unlike)
+
 
 module.exports = userRoutes;

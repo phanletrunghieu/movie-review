@@ -27,14 +27,14 @@ export default class AuthLoadingScreen extends Component {
 
     let timeStart = Date.now()
     CheckToken(userToken)
-    .then(()=>{
+    .then(valid=>{
       let timeEnd = Date.now()
       let timePass = timeEnd - timeStart
       if (timePass >= self.minTimeWait) {
-        self.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        self.props.navigation.navigate(valid ? 'App' : 'Auth');
       } else {
         setTimeout(() => {
-          self.props.navigation.navigate(userToken ? 'App' : 'Auth');
+          self.props.navigation.navigate(valid ? 'App' : 'Auth');
         }, self.minTimeWait - timePass);
       }
     })

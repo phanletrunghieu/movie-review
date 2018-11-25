@@ -29,6 +29,7 @@ exports.checkMissParams = function(res, obj, checkProps) {
 };
 
 exports.createToken = function(user) {
+	user = JSON.parse(JSON.stringify(user))
 	return jwt.sign(user, config.secret, {
 		expiresIn: "30d"//60, "2 days", "10h", "7d"
 	});

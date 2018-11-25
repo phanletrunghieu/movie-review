@@ -14,14 +14,10 @@ exports.expressMiddleware =(req, res, next) => {
 		if (decoded == undefined) {
 			return response_express.exception(res, "Failed to authenticate token.")
 		}
-
-		if(decoded._id==user_token.user_id){
-			Log.d("Success auth");
-			req.token_info = decoded;
-			next();
-		}
-		else
-			return response_express.exception(res, "Failed to authenticate token.")
+		
+		Log.d("Success auth");
+		req.token_info = decoded;
+		next();
 	}else{
 		Log.d("Failed to auth");
 		return response_express.exception(res, "No token provided.", 403);

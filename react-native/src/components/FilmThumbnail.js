@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 
 export default class FilmThumbnail extends Component {
     render() {
+        var {width, height} = this.props.style;
+        width = width || 120;
+        height = height || (width*17/12);
+
         return (
             <TouchableWithoutFeedback onPress={this.props.onPress}>
-                <Animated.View style={{...styles.button, ...this.props.style}}>
-                    <Image source={{uri: this.props.src}} style={styles.image} />
+                <Animated.View style={{...styles.button, ...this.props.style, width, height}}>
+                    <Image source={{uri: this.props.src}} style={{...styles.image, width, height}} />
                 </Animated.View>
             </TouchableWithoutFeedback>
         )
@@ -27,13 +31,10 @@ FilmThumbnail.defaultProps = {
 
 var styles = StyleSheet.create({
     button: {
-        margin: 8,
-        width: 120,
+        margin: 5,
         alignItems: 'center',
     },
     image: {
-        width: 120,
-        height: 170,
         borderRadius: 8
     }
 })
