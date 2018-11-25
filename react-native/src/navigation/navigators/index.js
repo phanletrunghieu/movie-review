@@ -5,11 +5,12 @@ import AuthLoadingScreen from '../../screens/AuthLoadingScreen'
 import HomeScreen from '../../screens/Home'
 import FilmDetailScreen from '../../screens/FilmDetail'
 import SignInScreen from '../../screens/SignInScreen'
+import ProfileScreen from '../../screens/ProfileScreen'
 
 const transitionConfig = () => {
     return {
         transitionSpec: {
-            duration: 750,
+            duration: 500,
             easing: Easing.out(Easing.poly(4)),
             timing: Animated.timing,
             useNativeDriver: true,
@@ -33,7 +34,8 @@ const transitionConfig = () => {
 const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
-    FilmDetail: FilmDetailScreen
+    FilmDetail: FilmDetailScreen,
+    Profile: ProfileScreen,
   },
   {
       headerMode: 'none',

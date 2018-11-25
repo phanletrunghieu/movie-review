@@ -23,6 +23,10 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('FilmDetail', {film});
   };
 
+  _showProfile = () => {
+    this.props.navigation.navigate('Profile');
+  };
+
   _signOutAsync = async () => {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
@@ -34,14 +38,19 @@ class HomeScreen extends Component {
         <StatusBar backgroundColor="transparent" translucent={true} />
         <Content>
             <View style={styles.marginTop}></View>
-            <Button transparent dark style={styles.btnSearch}>
-                <Icon name='search' />
-            </Button>
+            <View style={styles.topBar}>
+                <Button transparent dark style={styles.btnAccount} onPress={()=>this._showProfile()}>
+                    <Icon name='person' />
+                </Button>
+                <Button transparent dark style={styles.btnSearch}>
+                    <Icon name='search' />
+                </Button>
+            </View>
             <View style={styles.content}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {
                         this.props.topFilms.topFilms.map(film=>(
-                            <FilmBanner key={film._id} src={film.banner} onPress={this._showFilmDetail} />
+                            <FilmBanner key={film._id} src={film.banner} onPress={()=>this._showFilmDetail(film)} />
                         ))
                     }
                 </ScrollView>
@@ -72,8 +81,9 @@ var styles = StyleSheet.create({
     marginTop: {
         marginTop: 30
     },
-    btnSearch: {
-        alignSelf: "flex-end"
+    topBar: {
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     content: {
         paddingHorizontal: 5
