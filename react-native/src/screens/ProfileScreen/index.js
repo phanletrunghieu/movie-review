@@ -3,8 +3,8 @@ import { Text, View, Image, StatusBar, StyleSheet, Dimensions } from 'react-nati
 import {Button, Icon, Container, Content, H1, Tab, Tabs} from 'native-base'
 import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
-
 import FilmThumbnail from '../../components/FilmThumbnail'
+import {fetchLikedFilms} from './actions/liked_film'
 
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
@@ -141,9 +141,11 @@ var styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
+    likedFilmsData: state.likedFilmsData
 })
 
 const mapDispatchToProps = dispatch => ({
+    fetchLikedFilms: ()=>dispatch(fetchLikedFilms())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
