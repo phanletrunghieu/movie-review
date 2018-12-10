@@ -10,6 +10,16 @@ const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
 
 class ProfileScreen extends Component {
+    constructor(props){
+        super(props)
+
+        this.props.fetchLikedFilms()
+    }
+
+    _showFilmDetail = (film) => {
+        this.props.navigation.navigate('FilmDetail', {film});
+    };
+
     render() {
         return (
             <Container style={styles.container}>
@@ -40,31 +50,16 @@ class ProfileScreen extends Component {
                             style={styles.tabPage}
                             heading="Liked"
                         >
-                            <FilmThumbnail
-                                src={"https://s3img.vcdn.vn/mobile/123phim/2018/11/pha-dao-the-gioi-ao-wreck-it-ralph-2-15428605519086_220x310.jpg"}
-                                onPress={()=>this._showFilmDetail(film)}
-                                style={styles.film}
-                            />
-                            <FilmThumbnail
-                                src={"https://s3img.vcdn.vn/mobile/123phim/2018/11/pha-dao-the-gioi-ao-wreck-it-ralph-2-15428605519086_220x310.jpg"}
-                                onPress={()=>this._showFilmDetail(film)}
-                                style={styles.film}
-                            />
-                            <FilmThumbnail
-                                src={"https://s3img.vcdn.vn/mobile/123phim/2018/11/pha-dao-the-gioi-ao-wreck-it-ralph-2-15428605519086_220x310.jpg"}
-                                onPress={()=>this._showFilmDetail(film)}
-                                style={styles.film}
-                            />
-                            <FilmThumbnail
-                                src={"https://s3img.vcdn.vn/mobile/123phim/2018/11/pha-dao-the-gioi-ao-wreck-it-ralph-2-15428605519086_220x310.jpg"}
-                                onPress={()=>this._showFilmDetail(film)}
-                                style={styles.film}
-                            />
-                            <FilmThumbnail
-                                src={"https://s3img.vcdn.vn/mobile/123phim/2018/11/pha-dao-the-gioi-ao-wreck-it-ralph-2-15428605519086_220x310.jpg"}
-                                onPress={()=>this._showFilmDetail(film)}
-                                style={styles.film}
-                            />
+                            {
+                                this.props.likedFilmsData.likedFilms.map(film=>(
+                                    <FilmThumbnail
+                                        key={film._id}
+                                        src={film.poster}
+                                        onPress={()=>this._showFilmDetail(film)}
+                                        style={styles.film}
+                                    />
+                                ))
+                            }
                         </Tab>
                         <Tab
                             textStyle={styles.tabHeadTextStyle}
@@ -145,7 +140,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchLikedFilms: ()=>dispatch(fetchLikedFilms())
+    fetchLikedFilms: ()=>dispatch(fetchLikedFilms()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

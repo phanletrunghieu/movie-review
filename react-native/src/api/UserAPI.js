@@ -1,4 +1,5 @@
 import config from '../config'
+import {getHeaders} from '../utils/common'
 import { AsyncStorage } from 'react-native'
 
 export function CheckToken(token) {

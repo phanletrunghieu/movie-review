@@ -2,6 +2,7 @@ var config = require('../../../../config');
 var response_express = require(config.library_dir+'/response').response_express;
 var lib_common = require(config.library_dir+'/common');
 var User = require(config.models_dir + '/mongo/user');
+var Film = require(config.models_dir + '/mongo/film');
 
 exports.get = (req, res)=>{
     let user_id = req.params.user_id
@@ -34,10 +35,11 @@ exports.like = (req, res)=>{
         if(!user.liked_film.includes(film_id))
             user.liked_film.push(film_id);
 
-        return user.save()
+        user.save()
+        return Film.findById(film_id)
     })
-    .then(user=>{
-        response_express.success(res, user)
+    .then(film=>{
+        response_express.success(res, film)
     })
     .catch(err=>response_express.exception(res, err.message || err))
 }
