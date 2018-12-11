@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
 import FilmThumbnail from '../../components/FilmThumbnail'
 import {fetchLikedFilms} from './actions/liked_film'
+import {fetchFavoriteFilms} from './actions/favorite_film'
 
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
@@ -69,7 +70,16 @@ class ProfileScreen extends Component {
                             style={styles.tabPage}
                             heading="Favorite"
                         >
-                            <Text>Tab 2</Text>
+                            {
+                                this.props.favoriteFilmsData.favoriteFilms.map(film=>(
+                                    <FilmThumbnail
+                                        key={film._id}
+                                        src={film.poster}
+                                        onPress={()=>this._showFilmDetail(film)}
+                                        style={styles.film}
+                                    />
+                                ))
+                            }
                         </Tab>
                     </Tabs>
                 </Content>
@@ -136,11 +146,13 @@ var styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-    likedFilmsData: state.likedFilmsData
+    likedFilmsData: state.likedFilmsData,
+    favoriteFilmsData: state.favoriteFilmsData
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchLikedFilms: ()=>dispatch(fetchLikedFilms()),
+    fetchFavoriteFilms: ()=>dispatch(fetchFavoriteFilms()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

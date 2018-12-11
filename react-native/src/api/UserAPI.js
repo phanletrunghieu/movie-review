@@ -124,3 +124,83 @@ export function unlikeFilm(film_id){
         .catch(reject)
     })
 }
+
+export function listFavoriteFilm(){
+    return new Promise((resolve, reject)=>{
+        Promise.all([
+            AsyncStorage.getItem('userData'),
+            getHeaders()
+        ])
+        .then(results=>{
+            userData = JSON.parse(results[0])
+            headers = results[1]
+            return fetch(config.api_url + '/users/' + userData._id + '/favorite_film', {
+                method: "GET",
+                headers,
+            })
+        })
+        .then(res=>res.json())
+        .then(res=>{
+            if(res.status==0){
+                return reject(res.error)
+            }
+
+            resolve(res.result)
+        })
+        .catch(reject)
+    })
+}
+
+export function favoriteFilm(film_id){
+    return new Promise((resolve, reject)=>{
+        Promise.all([
+            AsyncStorage.getItem('userData'),
+            getHeaders()
+        ])
+        .then(results=>{
+            userData = JSON.parse(results[0])
+            headers = results[1]
+            return fetch(config.api_url + '/users/' + userData._id + '/favorite_film', {
+                method: "POST",
+                headers,
+                body: JSON.stringify({film_id})
+            })
+        })
+        .then(res=>res.json())
+        .then(res=>{
+            if(res.status==0){
+                return reject(res.error)
+            }
+
+            resolve(res.result)
+        })
+        .catch(reject)
+    })
+}
+
+export function unfavoriteFilm(film_id){
+    return new Promise((resolve, reject)=>{
+        Promise.all([
+            AsyncStorage.getItem('userData'),
+            getHeaders()
+        ])
+        .then(results=>{
+            userData = JSON.parse(results[0])
+            headers = results[1]
+            return fetch(config.api_url + '/users/' + userData._id + '/favorite_film', {
+                method: "DELETE",
+                headers,
+                body: JSON.stringify({film_id})
+            })
+        })
+        .then(res=>res.json())
+        .then(res=>{
+            if(res.status==0){
+                return reject(res.error)
+            }
+
+            resolve(res.result)
+        })
+        .catch(reject)
+    })
+}

@@ -18,11 +18,11 @@ import FilmThumbnail from '../../components/FilmThumbnail'
 import ActorThumbnail from '../../components/ActorThumbnail'
 import StarVote from '../../components/StarVote'
 import {fetchLikedFilms, likeFilm, unlikeFilm} from '../ProfileScreen/actions/liked_film'
+import {fetchFavoriteFilms, favoriteFilm, unfavoriteFilm} from '../ProfileScreen/actions/favorite_film'
 
 class FilmDetailScreen extends Component {
 
     state = {
-        hovFavorite: false,
         hovComment: false,
         thumbnailMarginTop: new Animated.Value(-80),
     }
@@ -39,6 +39,7 @@ class FilmDetailScreen extends Component {
         this.onPause = this.onPause.bind(this)
 
         this.props.fetchLikedFilms()
+        this.props.fetchFavoriteFilms()
     }
 
     onPressLike() {
@@ -50,9 +51,11 @@ class FilmDetailScreen extends Component {
     }
 
     onPressFavorite() {
-        this.setState({
-            hovFavorite: !this.state.hovFavorite
-        })
+        if (!!this.hovFavorite) {
+            this.props.unfavoriteFilm(this.film._id)
+        } else {
+            this.props.favoriteFilm(this.film._id)
+        }
     }
 
     onPressComment() {
@@ -88,6 +91,7 @@ class FilmDetailScreen extends Component {
         let srcCommentHov = require('../../assert/comment_icon_hov.png')
 
         this.hovLike = this.props.likedFilms.likedFilms.find(f=>f._id === this.film._id)
+        this.hovFavorite = this.props.favoriteFilms.favoriteFilms.find(f=>f._id === this.film._id)
         
 
         return (
@@ -133,7 +137,7 @@ class FilmDetailScreen extends Component {
                     <TouchableOpacity onPress={this.onPressFavorite}>
                         <Image
                             style={styles.bottomNavButton}
-                            source={this.state.hovFavorite ? srcFavoriteHov : srcFavorite}
+                            source={!!this.hovFavorite ? srcFavoriteHov : srcFavorite}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.onPressComment}>
@@ -205,6 +209,7 @@ const mapStateToProps = (state) => ({
     topFilms: state.topFilmsData,
     genres: state.homeGenresData,
     likedFilms: state.likedFilmsData,
+    favoriteFilms: state.favoriteFilmsData,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -213,6 +218,9 @@ const mapDispatchToProps = dispatch => ({
     likeFilm: (film_id)=>dispatch(likeFilm(film_id)),
     unlikeFilm: (film_id)=>dispatch(unlikeFilm(film_id)),
     fetchLikedFilms: ()=>dispatch(fetchLikedFilms()),
+    favoriteFilm: (film_id)=>dispatch(favoriteFilm(film_id)),
+    unfavoriteFilm: (film_id)=>dispatch(unfavoriteFilm(film_id)),
+    fetchFavoriteFilms: ()=>dispatch(fetchFavoriteFilms()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilmDetailScreen)

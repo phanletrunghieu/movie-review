@@ -18,5 +18,9 @@ userRoutes.get("/:user_id/like_film", like_film.get)
 userRoutes.post("/:user_id/like_film", like_film.like)
 userRoutes.delete("/:user_id/like_film", like_film.unlike)
 
+const favorite_film = require('./favorite_film')
+userRoutes.get("/:user_id/favorite_film", favorite_film.get)
+userRoutes.post("/:user_id/favorite_film", favorite_film.favorite)
+userRoutes.delete("/:user_id/favorite_film", favorite_film.unfavorite)
 
 module.exports = userRoutes;
