@@ -4,13 +4,18 @@ import {Button, Icon, Container, Content} from 'native-base'
 import { connect } from "react-redux";
 import FilmThumbnail from '../../components/FilmThumbnail'
 import FilmBanner from '../../components/FilmBanner'
+import {getHighRateFilms} from '../../api/FilmAPI'
 import {fetchTopFilms} from './actions/top_films.js'
 import {fetchHomeGenres} from './actions/home_genres.js'
 
 class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Welcome to the app!',
-  };
+    static navigationOptions = {
+        title: 'Welcome to the app!',
+    };
+
+    state = {
+        highRateFilms: []
+    }
 
     constructor(props){
         super(props)
@@ -19,18 +24,30 @@ class HomeScreen extends Component {
         this.props.fetchHomeGenres()
     }
 
-  _showFilmDetail = (film) => {
-    this.props.navigation.navigate('FilmDetail', {film});
-  };
+    componentDidMount(){
+        getHighRateFilms()
+        .then(highRateFilms=>{
+            this.setState({highRateFilms})
+        })
+        .catch(err=>console.error(err))
+    }
 
-  _showProfile = () => {
-    this.props.navigation.navigate('Profile');
-  };
+    _showFilmDetail = (film) => {
+        this.props.navigation.navigate('FilmDetail', {film});
+    };
 
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
+    _showProfile = () => {
+        this.props.navigation.navigate('Profile');
+    };
+
+    _showSearchInput = () => {
+        this.props.navigation.navigate('SearchInput');
+    }
+
+    _signOutAsync = async () => {
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('Auth');
+    };
 
   render() {
     return (
@@ -42,7 +59,7 @@ class HomeScreen extends Component {
                 <Button transparent dark style={styles.btnAccount} onPress={()=>this._showProfile()}>
                     <Icon name='person' />
                 </Button>
-                <Button transparent dark style={styles.btnSearch}>
+                <Button transparent dark style={styles.btnSearch} onPress={()=>this._showSearchInput()}>
                     <Icon name='search' />
                 </Button>
             </View>
@@ -54,6 +71,16 @@ class HomeScreen extends Component {
                         ))
                     }
                 </ScrollView>
+                <View style={styles.genreContainer}>
+                    <Text style={styles.genreTitle}>High rating</Text>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        {
+                            this.state.highRateFilms.map(film=>(
+                                <FilmThumbnail key={film._id} src={film.poster} name={film.name} onPress={()=>this._showFilmDetail(film)} />
+                            ))
+                        }
+                    </ScrollView>
+                </View>
                 {
                     this.props.genres.homeGenres.map(genre=>(
                         <View key={genre._id} style={styles.genreContainer}>
@@ -61,7 +88,7 @@ class HomeScreen extends Component {
                             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                                 {
                                     this.props.genres.homeFilms.filter(film=>film.genre===genre._id).map(film=>(
-                                        <FilmThumbnail key={film._id} src={film.poster} onPress={()=>this._showFilmDetail(film)} />
+                                        <FilmThumbnail key={film._id} src={film.poster} name={film.name} onPress={()=>this._showFilmDetail(film)} />
                                     ))
                                 }
                             </ScrollView>

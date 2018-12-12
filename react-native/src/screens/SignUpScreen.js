@@ -2,24 +2,25 @@ import React, { Component } from 'react'
 import { StyleSheet, StatusBar, View, Image, Alert } from 'react-native'
 import { Form, Item, Input, Button, Text, Icon } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Signin} from '../api/UserAPI'
+import {Signup} from '../api/UserAPI'
 
-export default class SignInScreen extends Component {
+export default class SignUpScreen extends Component {
     static navigationOptions = {
         title: 'Please sign in',
     };
 
     state = {
         username: "",
+        full_name: "",
         password: "",
         showPassword: false,
     }
 
-    _signInAsync = async () => {
-        let {username, password} = this.state
-        Signin(username, password)
-        .then(token=>{
-            this.props.navigation.navigate('App');
+    _signUpAsync = async () => {
+        let {username, full_name, password} = this.state
+        Signup(username, full_name, password)
+        .then(()=>{
+            this.props.navigation.replace('SignIn');
         })
         .catch(err=>Alert.alert('Error', err.message || err))
         
@@ -44,6 +45,15 @@ export default class SignInScreen extends Component {
                         </Item>
                         <Item regular style={styles.item}>
                             <Input
+                                placeholder="Full name"
+                                value={this.state.full_name}
+                                onChangeText={full_name => this.setState({full_name})}
+                                style={styles.input}
+                                textContentType="username"
+                            />
+                        </Item>
+                        <Item regular style={styles.item}>
+                            <Input
                                 placeholder="Password"
                                 style={styles.input}
                                 textContentType="password"
@@ -52,21 +62,10 @@ export default class SignInScreen extends Component {
                                 keyboardType={this.state.showPassword ? "visible-password" : "default"}
                                 secureTextEntry={true}
                             />
-                            <Button
-                                transparent
-                                light
-                                onPress={()=>this.setState({showPassword: !this.state.showPassword})}
-                                style={styles.btnShowPass}
-                            >
-                                <Icon name={this.state.showPassword ? 'md-eye-off' : 'md-eye'} />
-                            </Button>
                         </Item>
                     </Form>
                     <View style={styles.buttonContainer}>
-                        <Button rounded light block onPress={this._signInAsync} style={styles.button}>
-                            <Text>Signin</Text>
-                        </Button>
-                        <Button rounded light block onPress={()=>this.props.navigation.navigate('SignUp')} style={styles.button}>
+                        <Button rounded light block onPress={this._signUpAsync} style={styles.button}>
                             <Text>Signup</Text>
                         </Button>
                     </View>

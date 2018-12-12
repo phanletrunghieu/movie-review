@@ -9,6 +9,8 @@ var userRoutes = express.Router();
 
 userRoutes.get("/", require('./findall'))
 userRoutes.post("/", require('./create'))
+userRoutes.post('/upload-avatar', require('./upload_avatar'));
+userRoutes.put('/:user_id/change-password', require('./change_password'));
 userRoutes.get("/:user_id", require('./find'))
 userRoutes.delete("/:user_id", require('./delete'))
 userRoutes.put("/:user_id", require('./update'))
