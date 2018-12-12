@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StatusBar, StyleSheet } from 'react-native'
-import {Button, Icon, Container, Content, H1} from 'native-base'
+import { Text, View, Image, StatusBar, StyleSheet, Dimensions } from 'react-native'
+import {Button, Icon, Container, Content, H1, Tab, Tabs} from 'native-base'
 import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
+import FilmThumbnail from '../../components/FilmThumbnail'
+import {fetchLikedFilms} from './actions/liked_film'
+import {fetchFavoriteFilms} from './actions/favorite_film'
+
+const screenHeight = Dimensions.get("window").height
+const screenWidth = Dimensions.get("window").width
 
 class ProfileScreen extends Component {
+    constructor(props){
+        super(props)
+
+        this.props.fetchLikedFilms()
+    }
+
+    _showFilmDetail = (film) => {
+        this.props.navigation.navigate('FilmDetail', {film});
+    };
+
     render() {
         return (
             <Container style={styles.container}>
@@ -26,6 +42,46 @@ class ProfileScreen extends Component {
                         />
                         <H1 style={styles.name}>Hieu Dep Trai</H1>
                     </LinearGradient>
+                    <Tabs tabContainerStyle={{elevation:0}} tabBarUnderlineStyle={{backgroundColor: "transparent"}}>
+                        <Tab
+                            textStyle={styles.tabHeadTextStyle}
+                            activeTextStyle={styles.tabHeadTextStyleActive}
+                            tabStyle={styles.tabHeading}
+                            activeTabStyle={styles.tabHeading}
+                            style={styles.tabPage}
+                            heading="Liked"
+                        >
+                            {
+                                this.props.likedFilmsData.likedFilms.map(film=>(
+                                    <FilmThumbnail
+                                        key={film._id}
+                                        src={film.poster}
+                                        onPress={()=>this._showFilmDetail(film)}
+                                        style={styles.film}
+                                    />
+                                ))
+                            }
+                        </Tab>
+                        <Tab
+                            textStyle={styles.tabHeadTextStyle}
+                            activeTextStyle={styles.tabHeadTextStyleActive}
+                            tabStyle={styles.tabHeading}
+                            activeTabStyle={styles.tabHeading}
+                            style={styles.tabPage}
+                            heading="Favorite"
+                        >
+                            {
+                                this.props.favoriteFilmsData.favoriteFilms.map(film=>(
+                                    <FilmThumbnail
+                                        key={film._id}
+                                        src={film.poster}
+                                        onPress={()=>this._showFilmDetail(film)}
+                                        style={styles.film}
+                                    />
+                                ))
+                            }
+                        </Tab>
+                    </Tabs>
                 </Content>
             </Container>
         )
@@ -66,13 +122,37 @@ var styles = StyleSheet.create({
     },
     name: {
         color: "#fff"
+    },
+    tabHeading: {
+        backgroundColor: "#F8F8F8"
+    },
+    tabHeadTextStyle: {
+        color: "#000",
+        fontWeight: "400"
+    },
+    tabHeadTextStyleActive: {
+        color: "#000",
+        fontWeight: "700"
+    },
+    tabPage: {
+        backgroundColor: "#F8F8F8",
+        minHeight: screenHeight-300-50,
+        flexDirection: "row",
+        flexWrap: "wrap"
+    },
+    film: {
+        width: screenWidth/3 - 10
     }
 })
 
 const mapStateToProps = (state) => ({
+    likedFilmsData: state.likedFilmsData,
+    favoriteFilmsData: state.favoriteFilmsData
 })
 
 const mapDispatchToProps = dispatch => ({
+    fetchLikedFilms: ()=>dispatch(fetchLikedFilms()),
+    fetchFavoriteFilms: ()=>dispatch(fetchFavoriteFilms()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

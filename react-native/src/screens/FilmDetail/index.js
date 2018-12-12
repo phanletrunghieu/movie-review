@@ -17,12 +17,12 @@ import Trailer from "../../components/Trailer"
 import FilmThumbnail from '../../components/FilmThumbnail'
 import ActorThumbnail from '../../components/ActorThumbnail'
 import StarVote from '../../components/StarVote'
+import {fetchLikedFilms, likeFilm, unlikeFilm} from '../ProfileScreen/actions/liked_film'
+import {fetchFavoriteFilms, favoriteFilm, unfavoriteFilm} from '../ProfileScreen/actions/favorite_film'
 
 class FilmDetailScreen extends Component {
 
     state = {
-        hovLike: false,
-        hovFavorite: false,
         hovComment: false,
         thumbnailMarginTop: new Animated.Value(-80),
     }
@@ -30,23 +30,32 @@ class FilmDetailScreen extends Component {
     constructor(props) {
         super(props)
 
+        this.film = props.navigation.getParam('film')
+
         this.onPressLike = this.onPressLike.bind(this)
         this.onPressFavorite = this.onPressFavorite.bind(this)
         this.onPressComment = this.onPressComment.bind(this)
         this.onPlay = this.onPlay.bind(this)
         this.onPause = this.onPause.bind(this)
+
+        this.props.fetchLikedFilms()
+        this.props.fetchFavoriteFilms()
     }
 
     onPressLike() {
-        this.setState({
-            hovLike: !this.state.hovLike
-        })
+        if (!!this.hovLike) {
+            this.props.unlikeFilm(this.film._id)
+        } else {
+            this.props.likeFilm(this.film._id)
+        }
     }
 
     onPressFavorite() {
-        this.setState({
-            hovFavorite: !this.state.hovFavorite
-        })
+        if (!!this.hovFavorite) {
+            this.props.unfavoriteFilm(this.film._id)
+        } else {
+            this.props.favoriteFilm(this.film._id)
+        }
     }
 
     onPressComment() {
@@ -74,13 +83,16 @@ class FilmDetailScreen extends Component {
     }
 
     render() {
-        let film = this.props.navigation.getParam('film')
         let srcLike = require('../../assert/like_icon_def.png')
         let srcLikeHov = require('../../assert/like_icon_hov.png')
         let srcFavorite = require('../../assert/favorites_icon_def.png')
         let srcFavoriteHov = require('../../assert/favorites_icon_hov.png')
         let srcComment = require('../../assert/comment_icon_def.png')
         let srcCommentHov = require('../../assert/comment_icon_hov.png')
+
+        this.hovLike = this.props.likedFilms.likedFilms.find(f=>f._id === this.film._id)
+        this.hovFavorite = this.props.favoriteFilms.favoriteFilms.find(f=>f._id === this.film._id)
+        
 
         return (
             <Container>
@@ -91,11 +103,11 @@ class FilmDetailScreen extends Component {
                     </Button>
                 </View>
                 <Content>
-                    <Trailer onPlay={this.onPlay} onPause={this.onPause} image={film.banner} videoId="q5u6v_W2ztA" />
+                    <Trailer onPlay={this.onPlay} onPause={this.onPause} image={this.film.banner} videoId="q5u6v_W2ztA" />
                     <View style={styles.basicInfoContainer}>
-                        <FilmThumbnail style={{...styles.thumbnail, marginTop: this.state.thumbnailMarginTop}} src={film.poster}/>
+                        <FilmThumbnail style={{...styles.thumbnail, marginTop: this.state.thumbnailMarginTop}} src={this.film.poster}/>
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{film.name}</Text>
+                            <Text style={styles.title}>{this.film.name}</Text>
                             <Text style={styles.subtitle}>2018</Text>
                             <StarVote />
                         </View>
@@ -119,13 +131,13 @@ class FilmDetailScreen extends Component {
                     <TouchableOpacity onPress={this.onPressLike}>
                         <Image
                             style={styles.bottomNavButton}
-                            source={this.state.hovLike ? srcLikeHov : srcLike}
+                            source={!!this.hovLike ? srcLikeHov : srcLike}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.onPressFavorite}>
                         <Image
                             style={styles.bottomNavButton}
-                            source={this.state.hovFavorite ? srcFavoriteHov : srcFavorite}
+                            source={!!this.hovFavorite ? srcFavoriteHov : srcFavorite}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.onPressComment}>
@@ -196,11 +208,19 @@ var styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
     topFilms: state.topFilmsData,
     genres: state.homeGenresData,
+    likedFilms: state.likedFilmsData,
+    favoriteFilms: state.favoriteFilmsData,
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchTopFilms: ()=>dispatch(fetchTopFilms()),
-    fetchHomeGenres: ()=>dispatch(fetchHomeGenres())
+    fetchHomeGenres: ()=>dispatch(fetchHomeGenres()),
+    likeFilm: (film_id)=>dispatch(likeFilm(film_id)),
+    unlikeFilm: (film_id)=>dispatch(unlikeFilm(film_id)),
+    fetchLikedFilms: ()=>dispatch(fetchLikedFilms()),
+    favoriteFilm: (film_id)=>dispatch(favoriteFilm(film_id)),
+    unfavoriteFilm: (film_id)=>dispatch(unfavoriteFilm(film_id)),
+    fetchFavoriteFilms: ()=>dispatch(fetchFavoriteFilms()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilmDetailScreen)

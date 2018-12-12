@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, StatusBar, View, Image, Alert } from 'react-native'
 import { Form, Item, Input, Button, Text, Icon } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Login} from '../api/UserAPI'
+import {Signin} from '../api/UserAPI'
 
 export default class SignInScreen extends Component {
     static navigationOptions = {
@@ -17,7 +17,7 @@ export default class SignInScreen extends Component {
 
     _signInAsync = async () => {
         let {username, password} = this.state
-        Login(username, password)
+        Signin(username, password)
         .then(token=>{
             this.props.navigation.navigate('App');
         })
@@ -47,6 +47,8 @@ export default class SignInScreen extends Component {
                                 placeholder="Password"
                                 style={styles.input}
                                 textContentType="password"
+                                value={this.state.password}
+                                onChangeText={password => this.setState({password})}
                                 keyboardType={this.state.showPassword ? "visible-password" : "default"}
                                 secureTextEntry={true}
                             />
@@ -62,7 +64,7 @@ export default class SignInScreen extends Component {
                     </Form>
                     <View style={styles.buttonContainer}>
                         <Button rounded light block onPress={this._signInAsync} style={styles.button}>
-                            <Text>Login</Text>
+                            <Text>Signin</Text>
                         </Button>
                     </View>
                 </View>

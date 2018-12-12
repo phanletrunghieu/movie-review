@@ -50,6 +50,14 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         default: 1,//1: Nam, 2: Nữ, 3: Les, 4: Gay
     },
+    liked_film: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Film',
+    }],
+    favorite_film: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Film',
+    }],
     date_created: {
         type: Date,
         default: Date.now
