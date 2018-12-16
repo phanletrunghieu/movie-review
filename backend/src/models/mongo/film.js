@@ -22,6 +22,9 @@ var FilmSchema = new mongoose.Schema({
     trailers: {
         type: [String]
     },
+    images: {
+        type: [String]
+    },
     actors: {
         type: [String]
     },

@@ -37,6 +37,7 @@ class FilmDetailScreen extends Component {
         this.onPressLike = this.onPressLike.bind(this)
         this.onPressFavorite = this.onPressFavorite.bind(this)
         this.onPressComment = this.onPressComment.bind(this)
+        this.onPressImageScreen = this.onPressImageScreen.bind(this)
         this.onPlay = this.onPlay.bind(this)
         this.onPause = this.onPause.bind(this)
 
@@ -73,6 +74,14 @@ class FilmDetailScreen extends Component {
         this.props.navigation.navigate('Review', {film: this.film});
     }
 
+    onPressImageScreen() {
+        this.props.navigation.navigate('FilmImages', {images: this.film.images.map((image, index) => ({
+            URI: image,
+            thumbnail: image,
+            id: String(index),
+        }))});
+    }
+
     onPlay() {
         Animated.timing(
             this.state.thumbnailMarginTop, {
@@ -98,6 +107,7 @@ class FilmDetailScreen extends Component {
         let srcFavoriteHov = require('../../assert/favorites_icon_hov.png')
         let srcComment = require('../../assert/comment_icon_def.png')
         let srcCommentHov = require('../../assert/comment_icon_hov.png')
+        let srcImages = require('../../assert/image_icon_def.png')
 
         this.hovLike = this.props.likedFilms.likedFilms.find(f=>f._id === this.film._id)
         this.hovFavorite = this.props.favoriteFilms.favoriteFilms.find(f=>f._id === this.film._id)
@@ -157,9 +167,19 @@ class FilmDetailScreen extends Component {
                     <TouchableOpacity onPress={this.onPressComment}>
                         <Image
                             style={styles.bottomNavButton}
-                            source={this.state.hovComment ? srcCommentHov : srcComment}
+                            source={srcComment}
                         />
                     </TouchableOpacity>
+                    {
+                        this.film.images && this.film.images.length > 0 && (
+                            <TouchableOpacity onPress={this.onPressImageScreen}>
+                                <Image
+                                    style={styles.bottomNavButton}
+                                    source={srcImages}
+                                />
+                            </TouchableOpacity>
+                        )
+                    }
                 </View>
             </Container>
         )
