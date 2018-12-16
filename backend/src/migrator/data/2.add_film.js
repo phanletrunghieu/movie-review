@@ -12,6 +12,16 @@ exports.up = ()=>{
             trailers: [
                 "4JKVax7hh3s"
             ],
+            images: [
+                "https://image.tmdb.org/t/p/original/juc9wt7Eh2IarLL5S1yQ1a21O1A.jpg",
+                "https://image.tmdb.org/t/p/original/zRDkmww7Bu11wiz2g86RxSreiY4.jpg",
+                "https://image.tmdb.org/t/p/original/fdpRBTIhmoaiBJNjikNB4fJxCON.jpg",
+                "https://image.tmdb.org/t/p/original/gefpwX7OuiR0ygo944hg9GVj0Kf.jpg",
+                "https://image.tmdb.org/t/p/original/rWW4fIPeAXJwObE9rHaUI2Wisj5.jpg",
+                "https://image.tmdb.org/t/p/original/uHThxLkA9Gf4SVLhixXjdzzH5RF.jpg",
+                "https://image.tmdb.org/t/p/original/isIqcXZE7jwUTdYWPp3TBX8a1zo.jpg",
+                "https://image.tmdb.org/t/p/original/kHhCz4JCs5oDp4xo2tuuYF88M34.jpg",
+            ],
             actors: [
                 "http://www.gstatic.com/tv/thumb/persons/275459/275459_v9_bb.jpg",
             ],
@@ -27,6 +37,27 @@ exports.up = ()=>{
             banner: "https://img-www.tf-cdn.com/show/2/supergirl.jpeg",
             trailers: [
                 "wv7jAKfSG8w"
+            ],
+            images: [
+                "https://image.tmdb.org/t/p/original/2qou2R47XZ1N6SlqGZcoCHDyEhN.jpg",
+                "https://image.tmdb.org/t/p/original/3x1lVyxtsLKsZyR2E3qRe1EAXG4.jpg",
+                "https://image.tmdb.org/t/p/original/lyA5Bw5paTzsVFGYHx3EbZNR9mK.jpg",
+                "https://image.tmdb.org/t/p/original/mmprryb2r0X8u9JkZCnaJIzyYX4.jpg",
+                "https://image.tmdb.org/t/p/original/p39NvmMdBA9WE2JYTQG0EUtNWeR.jpg",
+                "https://image.tmdb.org/t/p/original/6DgJmsG8anuZyolr4viflMCQazK.jpg",
+                "https://image.tmdb.org/t/p/original/hTnMOqUxYWSXqggzlY13NATnuTv.jpg",
+                "https://image.tmdb.org/t/p/original/steBw729OGp321eNqT47qvFrtpH.jpg",
+                "https://image.tmdb.org/t/p/original/tevGaNTGWFkJNfLw89k4T55zgIJ.jpg",
+                "https://image.tmdb.org/t/p/original/eJ0oz0K6F9Mr9av8Px9uyaLmP2j.jpg",
+                "https://image.tmdb.org/t/p/original/gKWdk1kyCQHT3S02hUyJDtiRTQA.jpg",
+                "https://image.tmdb.org/t/p/original/rGVnN0eLSJ7ePrsciWFWU3VXPUp.jpg",
+                "https://image.tmdb.org/t/p/original/vLAIAo5rz9P8rapGzz7vM6lTWWc.jpg",
+                "https://image.tmdb.org/t/p/original/mrX4bst4eAU6ri1mXtBYkom7Xx9.jpg",
+                "https://image.tmdb.org/t/p/original/wb3rdSD9JxV1QAvnNArhS3snMmN.jpg",
+                "https://image.tmdb.org/t/p/original/wmKwHUwQkzkmJGSLPEueGxacF47.jpg",
+                "https://image.tmdb.org/t/p/original/5wj5tBJKlcMSdU7nv1BgBtKUSji.jpg",
+                "https://image.tmdb.org/t/p/original/zT3AnlRwWVjXe8SgMgpyaixHIBN.jpg",
+                "https://image.tmdb.org/t/p/original/vW4uwLusTnfQpjvDpBG2443gueq.jpg",
             ],
             actors: [
                 "http://image.phimmoi.net/profile/17762/medium.jpg",
@@ -82,6 +113,14 @@ exports.up = ()=>{
             trailers: [
                 "_ZnemILe3DY"
             ],
+            images: [
+                "https://image.tmdb.org/t/p/original/bEAqNPtkhSlCbrUgsvsfVyR56Ug.jpg",
+                "https://image.tmdb.org/t/p/original/sFh0ZMH1cgXcfcydqDrjaFCC9Ak.jpg",
+                "https://image.tmdb.org/t/p/original/fXVciWWFWLZLCxwG0c0Bdrw0MG0.jpg",
+                "https://image.tmdb.org/t/p/original/2z1Y6zG0fuyVSsvv7McJkUUHNyt.jpg",
+                "https://image.tmdb.org/t/p/original/g5l5W0yMR5p5GeHKrPDx3NUtwNu.jpg",
+                "https://image.tmdb.org/t/p/original/71Vb4CwgTkFxgFsGfUFwkoGbZnh.jpg",
+            ],
             actors: [
                 "http://image.phimmoi.net/profile/16972/medium.jpg",
                 "http://image.phimmoi.net/profile/37453/medium.jpg",
@@ -104,6 +143,10 @@ exports.up = ()=>{
             trailers: [
                 "2Lcy3XUDd_A"
             ],
+            images: [
+                "https://image.tmdb.org/t/p/original/lPnWhpVe81isngx5Dmrq3itjuF0.jpg",
+                "https://image.tmdb.org/t/p/original/3U7BSGExgEoFMoQzHtORAYZ8YUF.jpg",
+            ],
             actors: [
                 "http://image.phimmoi.net/profile/17543/medium.jpg",
                 "http://image.phimmoi.net/profile/638/medium.jpg",
@@ -123,6 +166,10 @@ exports.up = ()=>{
             banner: "https://s3img.vcdn.vn/123phim/2018/11/sinh-vat-huyen-bi-toi-ac-cua-grindelwald-c13-15423356631387.jpg",
             trailers: [
                 "-fEd4hsl52c"
+            ],
+            images: [
+                "https://image.tmdb.org/t/p/original/85SoWDsnqGpJW2jcY6UHRrU4r80.jpg",
+                "https://image.tmdb.org/t/p/original/qFWPqKLf5D8HawqxhhH1b0LbegX.jpg",
             ],
             genre: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a82"),
             description: "Thiếu Gia Ác Ma Đừng Hôn Tôi (Phần 3) xoay quanh câu chuyện về cô gái cá tính An Sơ Hạ và cuộc sống nghèo khó, vất vả với mẹ sau khi bố mất tích. Sau một tai nạn giao thông, mẹ An Sơ Hạ qua đời, cô về sống cùng với nhà họ Hàn – gia đình đã được mẹ cô hiến thận sau khi mất. Từ đây, cuộc đời của cô gái này bước sang trang mới khi được đến học tại ngôi trường nổi tiếng, quen với những người bạn giàu có, thượng lưu. Đặc biệt, tại đây, An Sơ Hạ được bốn anh chàng theo đuổi, mỗi người lại có một tính cách, một cách quan tâm đến nữ chính khác nhau nhưng cả bốn anh chàng đẹp trai, tốt bụng này đều khiến người hâm mộ “đổ rầm”.",
@@ -174,6 +221,11 @@ exports.up = ()=>{
             trailers: [
                 "ILKiX297L3A"
             ],
+            images: [
+                "https://image.tmdb.org/t/p/original/b1EKIjZWYAoC3WUk14012DX46Cb.jpg",
+                "https://image.tmdb.org/t/p/original/6aQ1C6RJAzeyqXRpLNeQNnxKJnL.jpg",
+                "https://image.tmdb.org/t/p/original/88bx7yPJ8eiCvR69h2KHwe6L2Xq.jpg",
+            ],
             genre: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a83"),
             description: "Như thường lệ mỗi năm, Pokemon sẽ cho ra mắt một phần mới của series phim hoạt hình nổi tiếng từ Nhật Bản. Trong năm nay, nội dung phim sẽ tiếp tục xoay quanh câu chuyện của phần trước về nhân vật Pokemon Lugia trong truyền thuyết & sự gặp gỡ tình cờ của 5 huấn luyện viên Pokemon khi tham gia vào lễ hội Gió linh thiêng tại thành phố Fury. Theo phong tục, vào ngày cuối cùng của lễ hội, Pokemon Lugia sẽ ban phước lành cho người dân. Tuy nhiên, khi một sự kiện bất ngờ xảy ra, những cơn gió biến mất và thành phố bị đe dọa bởi một cuộc tấn công bí ẩn. Satoshi & Pikachu đã đứng lên kêu gọi những người bạn mới ra sức bảo vệ thành phố",
             is_top: true,
@@ -186,6 +238,10 @@ exports.up = ()=>{
             banner: "https://s3img.vcdn.vn/123phim/2018/11/sinh-vat-huyen-bi-toi-ac-cua-grindelwald-c13-15423356631387.jpg",
             trailers: [
                 "WfHyWRtZ8v8"
+            ],
+            images: [
+                "https://image.tmdb.org/t/p/original/8o8md5JjOx4k1ZrCe5hoo1F8xiL.jpg",
+                "https://image.tmdb.org/t/p/original/c4pw1l3gaLH5krzuDhdXwYnEeIT.jpg",
             ],
             actors: [],
             genre: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a83"),
@@ -200,6 +256,13 @@ exports.up = ()=>{
             banner: "http://image.phimmoi.net/post/2018/10/17/arrow-cw-season-7-ratings-canceled-or-renewed-season-8-e1539641523613.jpg",
             trailers: [
                 "x-6HwQ_6Iu8"
+            ],
+            images: [
+                "https://image.tmdb.org/t/p/original/dKxkwAJfGuznW8Hu0mhaDJtna0n.jpg",
+                "https://image.tmdb.org/t/p/original/dXTyVDTIgeByvUOUEiHjbi8xX9A.jpg",
+                "https://image.tmdb.org/t/p/original/scivLGg7zdqmdw5eDW3rvrEavr6.jpg",
+                "https://image.tmdb.org/t/p/original/2yfXq8JFNz6719MjCA5GgQne04b.jpg",
+                "https://image.tmdb.org/t/p/original/hD76ZDNjCAbGrKzAYJAHVCJ2ba7.jpg",
             ],
             actors: [
                 "http://image.phimmoi.net/profile/1987/medium.jpg",
@@ -221,6 +284,14 @@ exports.up = ()=>{
             banner: "http://image.phimmoi.net/post/2018/10/17/arrow-cw-season-7-ratings-canceled-or-renewed-season-8-e1539641523613.jpg",
             trailers: [
                 "x-6HwQ_6Iu8"
+            ],
+            images: [
+                "https://image.tmdb.org/t/p/original/mmxxEpTqVdwBlu5Pii7tbedBkPC.jpg",
+                "https://image.tmdb.org/t/p/original/9NzRllYCJyvn8SUnif6HyHPvLNH.jpg",
+                "https://image.tmdb.org/t/p/original/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
+                "https://image.tmdb.org/t/p/original/6ZdQTBy20HzWudZthAV7NkZWfIb.jpg",
+                "https://image.tmdb.org/t/p/original/lhBBQ5SL956mYp4oyv3b5yHMc4o.jpg",
+                "https://image.tmdb.org/t/p/original/AqHNEp9i4cemeHM6088tlzq2tgZ.jpg",
             ],
             actors: [
                 "http://image.phimmoi.net/profile/11298/medium.jpg",
