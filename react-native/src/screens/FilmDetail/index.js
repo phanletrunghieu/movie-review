@@ -19,6 +19,8 @@ import ActorThumbnail from '../../components/ActorThumbnail'
 import StarVote from '../../components/StarVote'
 import {fetchLikedFilms, likeFilm, unlikeFilm} from '../ProfileScreen/actions/liked_film'
 import {fetchFavoriteFilms, favoriteFilm, unfavoriteFilm} from '../ProfileScreen/actions/favorite_film'
+import StarRating from 'react-native-star-rating';
+import {findById} from '../../api/FilmAPI'
 
 class FilmDetailScreen extends Component {
 
@@ -42,6 +44,11 @@ class FilmDetailScreen extends Component {
         this.props.fetchFavoriteFilms()
     }
 
+    componentDidMount(){
+        findById(this.film._id)
+        .then(film=>this.film = film)
+    }
+
     onPressLike() {
         if (!!this.hovLike) {
             this.props.unlikeFilm(this.film._id)
@@ -62,6 +69,8 @@ class FilmDetailScreen extends Component {
         this.setState({
             hovComment: !this.state.hovComment
         })
+
+        this.props.navigation.navigate('Review', {film: this.film});
     }
 
     onPlay() {
@@ -103,27 +112,32 @@ class FilmDetailScreen extends Component {
                     </Button>
                 </View>
                 <Content>
-                    <Trailer onPlay={this.onPlay} onPause={this.onPause} image={this.film.banner} videoId="q5u6v_W2ztA" />
+                    <Trailer onPlay={this.onPlay} onPause={this.onPause} image={this.film.banner} videoId={this.film.trailers.length > 0 ? this.film.trailers[0] : "q5u6v_W2ztA"} />
                     <View style={styles.basicInfoContainer}>
                         <FilmThumbnail style={{...styles.thumbnail, marginTop: this.state.thumbnailMarginTop}} src={this.film.poster}/>
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>{this.film.name}</Text>
                             <Text style={styles.subtitle}>2018</Text>
-                            <StarVote />
+                            <StarRating
+                                disabled={true}
+                                maxStars={5}
+                                rating={this.film.star}
+                                containerStyle={styles.starRating}
+                                starSize={15}
+                            />
                         </View>
                     </View>
                     <View style={styles.description}>
-                        <Text>Rời khỏi chiếc game thùng cũ kĩ của Lilwak, bộ đôi Ralph và Vanellope bắt đầu tiến vào Internet – một thế giới mới mẻ và tràn ngập những điều kỳ thú. Anh chàng hậu đậu Ralph và người bạn đồng hành nhỏ bé Vanelllope phải nhờ vào sự giúp đỡ của các cư dân mạng để tìm kiếm một “mảnh ghép” có thể cứu lấy trò chơi điện tử Sugar Rush của Vanellope. Một trong số những người giúp đỡ họ là nhà khởi nghiệp Yesss, một cao thủ thuật toán và đồng thời là linh hồn của trang mạng xã hội nổi tiếng BuzzTube. Liệu cả hai có thể hoàn thành nhiệm vụ trước khi mọi thứ quá trễ?</Text>
+                        <Text>{this.film.description}</Text>
                     </View>
                     <View style={styles.actorContainer}>
                         <Text style={styles.actorTitle}>Actor</Text>
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
-                            <ActorThumbnail src={"https://m.media-amazon.com/images/M/MV5BMjExOTY3NzExM15BMl5BanBnXkFtZTgwOTg1OTAzMTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"} onPress={()=>{}} />
+                            {
+                                this.film.actors.map(actor=>(
+                                    <ActorThumbnail key={actor} src={actor} onPress={()=>{}} />
+                                ))
+                            }
                         </ScrollView>
                     </View>
                 </Content>
@@ -199,6 +213,10 @@ var styles = StyleSheet.create({
     description: {
         fontSize: 15,
         margin: 8,
+    },
+    starRating: {
+        marginVertical: 10,
+        width: 20
     },
     bottomNavButton: {
 

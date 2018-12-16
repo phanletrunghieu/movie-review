@@ -1,25 +1,121 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StatusBar, StyleSheet, Dimensions } from 'react-native'
-import {Button, Icon, Container, Content, H1, Tab, Tabs} from 'native-base'
+import { TouchableWithoutFeedback, View, Image, StatusBar, StyleSheet, Dimensions, AsyncStorage } from 'react-native'
+import {Button, Icon, Container, Content, H1, Tab, Tabs, ActionSheet} from 'native-base'
 import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
+import ImagePicker from 'react-native-image-picker';
+import DialogInput from 'react-native-dialog-input';
 import FilmThumbnail from '../../components/FilmThumbnail'
 import {fetchLikedFilms} from './actions/liked_film'
 import {fetchFavoriteFilms} from './actions/favorite_film'
+import {uploadAvatar, updateUser} from '../../api/UserAPI'
+import {uri as avatarURI} from '../../assert/default_avatar.png'
 
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
 
 class ProfileScreen extends Component {
+    state = {
+        showDialogUdate: false,
+        avatarURI: avatarURI,
+        name: "",
+    }
+
     constructor(props){
         super(props)
 
         this.props.fetchLikedFilms()
     }
 
+    componentDidMount(){
+        AsyncStorage.getItem("userData")
+        .then(userData => {
+            this.userData = JSON.parse(userData)
+            
+            this.setState({
+                avatarURI: this.userData.avatar || avatarURI,
+                name: this.userData.full_name,
+            })
+        })
+    }
+
     _showFilmDetail = (film) => {
         this.props.navigation.navigate('FilmDetail', {film});
     };
+
+    submitEditProfile = (full_name) => {
+        updateUser({full_name})
+        .then(user=>{
+            Object.assign(this.userData, user)
+            this.setState({
+                name: this.userData.full_name,
+                showDialogUdate: false,
+            })
+            AsyncStorage.setItem("userData", JSON.stringify(this.userData))
+        })
+    }
+
+    showMenu = () => {
+        ActionSheet.show(
+            {
+                options: ["Update name", "Change password", "Signout", "Cancel"],
+                cancelButtonIndex: 3,
+                destructiveButtonIndex: 3,
+                title: "Menu"
+            },
+            buttonIndex => {
+                if(buttonIndex===0){
+                    this.setState({showDialogUdate: true})
+                } else if(buttonIndex === 1) {
+                    this.props.navigation.navigate('ChangePassword');
+                } else if(buttonIndex === 2) {
+                    this.signout()
+                }
+            }
+        )
+    }
+
+    signout = () => {
+        AsyncStorage.clear()
+        this.props.navigation.navigate('Auth');
+    }
+
+    onPressAvatar = () => {
+        const options = {
+            title: 'Select Avatar',
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+          
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = { uri: response.uri };
+
+                let newAvatarURI;
+                uploadAvatar(response)
+                .then(result => {
+                    newAvatarURI = result.url;
+                    this.setState({avatarURI: newAvatarURI})
+                    return AsyncStorage.getItem("userData")
+                })
+                .then(userData=>{
+                    userData = JSON.parse(userData)
+                    userData.avatar = newAvatarURI
+                    return AsyncStorage.setItem("userData", JSON.stringify(userData))
+                })
+            }
+        });
+    }
 
     render() {
         return (
@@ -29,6 +125,9 @@ class ProfileScreen extends Component {
                     <Button transparent onPress={()=>this.props.navigation.goBack()}>
                         <Icon name='ios-arrow-back' style={{color: '#fff'}} />
                     </Button>
+                    <Button transparent onPress={this.showMenu}>
+                        <Icon name='md-more' style={{color: '#fff'}} />
+                    </Button>
                 </View>
                 <Content>
                     <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 1}} colors={['#F99F00', '#DB3069']} style={styles.linearGradient}>
@@ -36,11 +135,15 @@ class ProfileScreen extends Component {
                             style={styles.profileCoverBottom}
                             source={require('../../assert/profile_cover.png')}
                         />
-                        <Image
-                            style={styles.avatar}
-                            source={require('../../assert/default_avatar.png')}
-                        />
-                        <H1 style={styles.name}>Hieu Dep Trai</H1>
+                        <TouchableWithoutFeedback onPress={this.onPressAvatar}>
+                            <Image
+                                style={styles.avatar}
+                                source={{uri: this.state.avatarURI}}
+                            />
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={()=>this.setState({showDialogUdate: true})}>
+                            <H1 style={styles.name}>{this.state.name}</H1>
+                        </TouchableWithoutFeedback>
                     </LinearGradient>
                     <Tabs tabContainerStyle={{elevation:0}} tabBarUnderlineStyle={{backgroundColor: "transparent"}}>
                         <Tab
@@ -83,6 +186,12 @@ class ProfileScreen extends Component {
                         </Tab>
                     </Tabs>
                 </Content>
+                <DialogInput
+                    isDialogVisible={this.state.showDialogUdate}
+                    title={"Edit name"}
+                    submitInput={(inputText) => this.submitEditProfile(inputText)}
+                    closeDialog={() => this.setState({showDialogUdate: false})}
+                />
             </Container>
         )
     }
@@ -103,6 +212,7 @@ var styles = StyleSheet.create({
     topBar: {
         top: StatusBar.currentHeight,
         flexDirection: "row",
+        justifyContent: "space-between",
         width: "100%",
         position: "absolute",
         zIndex: 2,

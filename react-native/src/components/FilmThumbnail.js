@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchableWithoutFeedback, Animated, View, Image } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, Animated, View, Image } from 'react-native'
 import PropTypes from 'prop-types';
 
 export default class FilmThumbnail extends Component {
@@ -10,8 +10,9 @@ export default class FilmThumbnail extends Component {
 
         return (
             <TouchableWithoutFeedback onPress={this.props.onPress}>
-                <Animated.View style={{...styles.button, ...this.props.style, width, height}}>
+                <Animated.View style={{...styles.button, ...this.props.style, width, height: height + 25}}>
                     <Image source={{uri: this.props.src}} style={{...styles.image, width, height}} />
+                    <Text style={styles.name}>{this.props.name}</Text>
                 </Animated.View>
             </TouchableWithoutFeedback>
         )
@@ -36,5 +37,10 @@ var styles = StyleSheet.create({
     },
     image: {
         borderRadius: 8
+    },
+    name: {
+        fontSize: 13,
+        marginTop: 5,
+        color: "#000",
     }
 })

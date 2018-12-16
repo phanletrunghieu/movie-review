@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ENV=local node src/index.js",
+        "start": "ENV=staging node src/index.js",
         "local-db": "docker-compose up -d",
         "migrate-up": "ENV=staging node src/migrator up",
         "migrate-down": "ENV=staging node src/migrator down",
@@ -18,7 +18,10 @@
         "express": "^4.16.4",
         "helmet": "^3.14.0",
         "jsonwebtoken": "^8.3.0",
-        "mongoose": "^5.3.4"
+        "mongoose": "^5.3.4",
+        "multer": "^1.4.1",
+        "sharp": "^0.21.1",
+        "uuid": "^3.3.2"
     },
     "devDependencies": {}
 }

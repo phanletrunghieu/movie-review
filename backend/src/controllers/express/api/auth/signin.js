@@ -11,7 +11,7 @@ module.exports = (req, res)=>{
     let user;
     User.findOne({username: req.body.username})
     .then(u=>{
-        user = u
+        user = u.toObject()
         if (!user) {
             return Promise.reject("user not exist")
         }
@@ -23,7 +23,8 @@ module.exports = (req, res)=>{
             return Promise.reject("wrong password")
         }
         let token = lib_common.createToken(user)
-        response_express.success(res, {token})
+        user.token = token
+        response_express.success(res, user)
     })
     .catch(err=>response_express.exception(res, err.message || err))
 }

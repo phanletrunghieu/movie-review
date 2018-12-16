@@ -1,42 +1,30 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var FilmSchema = new mongoose.Schema({
-    name: {
+var CommentSchema = new mongoose.Schema({
+    body: {
         type: String,
         trim: true,
-        index: true,
+        required: true,
     },
-    author: {
+    star: {
+        type: Number,
+        required: true,
+        default: 5,
+    },
+    user: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'User',
     },
-    poster: {
-        type: String,
-        trim: true,
-    },
-    banner: {
-        type: String,
-        trim: true,
-    },
-    trailers: {
-        type: [String]
-    },
-    actors: {
-        type: [String]
-    },
-    genre: {
+    owner: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'Genre',
+        refPath: 'onModel'
     },
-    description: {
+    onModel: {
         type: String,
-        trim: true,
-    },
-    is_top: {
-        type: Boolean,
-        default: false,
+        required: true,
+        enum: ['Comment', 'Film']
     },
     date_created: {
         type: Date,
@@ -48,11 +36,11 @@ var FilmSchema = new mongoose.Schema({
     }
 });
 
-FilmSchema.pre('save', next => {
+CommentSchema.pre('save', next => {
     if (this.isNew || this.isModified) {
         this.date_updated = Date.now();
     }
     return next();
 });
 
-module.exports = mongoose.model('Film', FilmSchema);
+module.exports = mongoose.model('Comment', CommentSchema);

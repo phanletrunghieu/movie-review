@@ -5,7 +5,12 @@ import AuthLoadingScreen from '../../screens/AuthLoadingScreen'
 import HomeScreen from '../../screens/Home'
 import FilmDetailScreen from '../../screens/FilmDetail'
 import SignInScreen from '../../screens/SignInScreen'
+import SignUpScreen from '../../screens/SignUpScreen'
 import ProfileScreen from '../../screens/ProfileScreen'
+import ChangePasswordScreen from '../../screens/ChangePassword'
+import ReviewScreen from '../../screens/Review'
+import CreateReviewScreen from '../../screens/CreateReview'
+import SearchInputScreen from '../../screens/SearchInput'
 
 const transitionConfig = () => {
     return {
@@ -36,6 +41,10 @@ const AppStack = createStackNavigator(
     Home: HomeScreen,
     FilmDetail: FilmDetailScreen,
     Profile: ProfileScreen,
+    ChangePassword: ChangePasswordScreen,
+    Review: ReviewScreen,
+    CreateReview: CreateReviewScreen,
+    SearchInput: SearchInputScreen,
   },
   {
       headerMode: 'none',
@@ -44,7 +53,8 @@ const AppStack = createStackNavigator(
 );
 const AuthStack = createStackNavigator(
   {
-    SignIn: SignInScreen
+    SignIn: SignInScreen,
+    SignUp: SignUpScreen,
   },
   {
     headerMode: 'none',
