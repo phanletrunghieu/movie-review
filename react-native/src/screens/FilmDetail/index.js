@@ -81,7 +81,6 @@ class FilmDetailScreen extends Component {
             id: String(index),
         }))});
     }
-
     onPlay() {
         Animated.timing(
             this.state.thumbnailMarginTop, {
