@@ -9,6 +9,7 @@ import SignUpScreen from '../../screens/SignUpScreen'
 import ProfileScreen from '../../screens/ProfileScreen'
 import ChangePasswordScreen from '../../screens/ChangePassword'
 import ReviewScreen from '../../screens/Review'
+import FilmImagesScreen from '../../screens/FilmImages'
 import CreateReviewScreen from '../../screens/CreateReview'
 import SearchInputScreen from '../../screens/SearchInput'
 
@@ -40,6 +41,7 @@ const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
     FilmDetail: FilmDetailScreen,
+    FilmImages: FilmImagesScreen,
     Profile: ProfileScreen,
     ChangePassword: ChangePasswordScreen,
     Review: ReviewScreen,
