@@ -5,13 +5,12 @@ import {
     Animated,
     View,
     StatusBar,
-    Text,
     TouchableOpacity,
     Image,
     ScrollView,
     StyleSheet
 } from 'react-native'
-import {Button, Icon, Container, Content} from 'native-base'
+import {Button, Text, Icon, Container, Content} from 'native-base'
 import { connect } from "react-redux";
 import Trailer from "../../components/Trailer"
 import FilmThumbnail from '../../components/FilmThumbnail'
@@ -126,14 +125,23 @@ class FilmDetailScreen extends Component {
                         <FilmThumbnail style={{...styles.thumbnail, marginTop: this.state.thumbnailMarginTop}} src={this.film.poster}/>
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>{this.film.name}</Text>
-                            <Text style={styles.subtitle}>2018</Text>
-                            <StarRating
-                                disabled={true}
-                                maxStars={5}
-                                rating={this.film.star}
-                                containerStyle={styles.starRating}
-                                starSize={15}
-                            />
+                            <View style={{flexDirection: "row"}}>
+                                <View style={{flex: 0, width: 100}}>
+                                    <Text style={styles.subtitle}>2018</Text>
+                                    <StarRating
+                                        disabled={true}
+                                        maxStars={5}
+                                        rating={this.film.star}
+                                        containerStyle={styles.starRating}
+                                        starSize={15}
+                                    />
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <Button style={styles.btnCinemaSession} onPress={()=>this.props.navigation.navigate('Showtimes', {sessions: this.film.cineplexs})}>
+                                        <Text>Showtimes</Text>
+                                    </Button>
+                                </View>
+                            </View>
                         </View>
                     </View>
                     <View style={styles.description}>
@@ -223,7 +231,8 @@ var styles = StyleSheet.create({
         fontSize: 18,
     },
     actorContainer: {
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 90
     },
     actorTitle: {
         fontSize: 20,
@@ -236,6 +245,10 @@ var styles = StyleSheet.create({
     starRating: {
         marginVertical: 10,
         width: 20
+    },
+    btnCinemaSession: {
+        backgroundColor: "#ff7200",
+        marginTop: 10
     },
     bottomNavButton: {
 

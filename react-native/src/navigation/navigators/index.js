@@ -4,6 +4,7 @@ import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import AuthLoadingScreen from '../../screens/AuthLoadingScreen'
 import HomeScreen from '../../screens/Home'
 import FilmDetailScreen from '../../screens/FilmDetail'
+import ShowtimesScreen from '../../screens/Showtimes'
 import SignInScreen from '../../screens/SignInScreen'
 import SignUpScreen from '../../screens/SignUpScreen'
 import ProfileScreen from '../../screens/ProfileScreen'
@@ -12,6 +13,7 @@ import ReviewScreen from '../../screens/Review'
 import FilmImagesScreen from '../../screens/FilmImages'
 import CreateReviewScreen from '../../screens/CreateReview'
 import SearchInputScreen from '../../screens/SearchInput'
+import CinemaMapScreen from '../../screens/CinemaMap'
 
 const transitionConfig = () => {
     return {
@@ -41,12 +43,14 @@ const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
     FilmDetail: FilmDetailScreen,
+    Showtimes: ShowtimesScreen,
     FilmImages: FilmImagesScreen,
     Profile: ProfileScreen,
     ChangePassword: ChangePasswordScreen,
     Review: ReviewScreen,
     CreateReview: CreateReviewScreen,
     SearchInput: SearchInputScreen,
+    CinemaMap: CinemaMapScreen,
   },
   {
       headerMode: 'none',
