@@ -33,3 +33,36 @@
 - run `cd react-native`
 - run `npm start` (if using Linux)
 - run `react-native run-android`
+
+## Screenshot
+![Alt text](/screenshot/1.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/2.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/3.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/4.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/5.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/6.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/7.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/8.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/9.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/10.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/11.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/12.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/13.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/14.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/15.png?raw=true "Optional Title")
+
+![Alt text](/screenshot/16.png?raw=true "Optional Title")
