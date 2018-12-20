@@ -137,6 +137,11 @@ android {
 }
 
 dependencies {
+    implementation(project(':react-native-maps')) {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
     compile project(':react-native-image-picker')
     compile project(':react-native-youtube')
     compile project(':react-native-linear-gradient')
