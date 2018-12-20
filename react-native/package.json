@@ -14,6 +14,8 @@
     "react-native-image-picker": "^0.27.2",
     "react-native-interactive-image-gallery": "^0.1.2",
     "react-native-linear-gradient": "^2.4.2",
+    "react-native-map-link": "^2.1.4",
+    "react-native-maps": "^0.22.1",
     "react-native-star-rating": "^1.1.0",
     "react-native-swipeout": "^2.3.6",
     "react-native-youtube": "^1.1.0",
