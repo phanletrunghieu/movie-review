@@ -1,4 +1,4 @@
-package com.film;
+package com.hieudeptrai.film;
 
 import com.facebook.react.ReactActivity;
 
