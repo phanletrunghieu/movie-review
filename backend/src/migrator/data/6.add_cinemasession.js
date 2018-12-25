@@ -7,19 +7,19 @@ exports.up = ()=>{
         //cinema 1
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a81"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a81"),
             date: new Date(0,0,0,9,45),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a82"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a81"),
             date: new Date(0,0,0,16,15),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a83"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a81"),
             date: new Date(0,0,0,18,45),
         },
@@ -27,19 +27,19 @@ exports.up = ()=>{
         //cinema 2
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a84"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a82"),
             date: new Date(0,0,0,9,45),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a85"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a82"),
             date: new Date(0,0,0,16),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a86"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a82"),
             date: new Date(0,0,0,18,15),
         },
@@ -47,19 +47,19 @@ exports.up = ()=>{
         //cinema 3
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a87"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a83"),
             date: new Date(0,0,0,9),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5a88"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a83"),
             date: new Date(0,0,0,11,30),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5b00"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a83"),
             date: new Date(0,0,0,18,15),
         },
@@ -67,19 +67,19 @@ exports.up = ()=>{
         //cinema 4
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5b01"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a84"),
             date: new Date(0,0,0,9),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5b02"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a84"),
             date: new Date(0,0,0,11,30),
         },
         {
             _id: mongoose.Types.ObjectId("5bcf03c89136125ad43e5b03"),
-            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a11"),
+            film: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             cinema: mongoose.Types.ObjectId("5bcf03c89036425ad43e5a84"),
             date: new Date(0,0,0,18,15),
         },

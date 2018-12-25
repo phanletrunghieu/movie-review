@@ -9,7 +9,7 @@ exports.up = ()=>{
             body: "Rat hay",
             star: 5,
             user: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a7c"),
-            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a12"),
+            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             onModel: "Film",
         },
         {
@@ -17,7 +17,7 @@ exports.up = ()=>{
             body: "Hay lam",
             star: 4,
             user: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a7d"),
-            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a12"),
+            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             onModel: "Film",
         },
         {
@@ -25,7 +25,7 @@ exports.up = ()=>{
             body: "Phim rat do. Dung xem phi tien.",
             star: 1,
             user: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a7e"),
-            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a12"),
+            owner: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a23"),
             onModel: "Film",
         },
     ])

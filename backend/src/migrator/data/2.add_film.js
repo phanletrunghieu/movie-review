@@ -283,7 +283,7 @@ exports.up = ()=>{
             poster: "http://image.phimmoi.net/film/7584/poster.medium.jpg",
             banner: "http://image.phimmoi.net/post/2018/10/17/arrow-cw-season-7-ratings-canceled-or-renewed-season-8-e1539641523613.jpg",
             trailers: [
-                "x-6HwQ_6Iu8"
+                "Yj0l7iGKh8g"
             ],
             images: [
                 "https://image.tmdb.org/t/p/original/mmxxEpTqVdwBlu5Pii7tbedBkPC.jpg",
@@ -303,7 +303,7 @@ exports.up = ()=>{
             ],
             genre: mongoose.Types.ObjectId("5bcf03c89036025ad43e5a83"),
             description: "The Flash phần 5 tiếp tục tập trung vào khoa học Barry Allen, người trở thành siêu anh hùng với sức mạnh và tốc độ đáng kinh ngạc sau khi bị sét đánh do vụ nổ máy gia tốc Harrison Wells.",
-            is_top: false,
+            is_top: true,
         },
     ])
 }
