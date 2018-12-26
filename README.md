@@ -4,6 +4,7 @@ Download:
 
 - [Android](https://github.com/phanletrunghieu/movie-review/releases)
 - iOS
+- [Report](/docs/Report.docx)
 
 ## Tech
 - React Native
